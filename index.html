@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Responsive Portfolio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=BBH+Sans+Hegarty&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpg" href="./photo_2025-10-16_11-28-08.jpg">
+    <style>
+        /* ================================================
+        1. CSS VARIABLES & GLOBAL STYLES 
+        ================================================ */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --text-color: #333;
+            --light-bg: #f4f4f9;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --border-radius: 6px;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: rgb(7, 8, 8);
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-weight: 700;
+            color: white;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        .container {
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* ================================================
+        2. HEADER & NAVIGATION 
+        ================================================ */
+        header {
+            background-color: rgb(4, 18, 23);
+            padding: 15px 40px;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            font-family: "Delius Swash Caps", cursive;
+            animation: fadeInDown 0.5s ease-in;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.6rem;
+        }
+
+        /* Desktop Nav Styles */
+        nav a {
+            color: white;
+            margin-left: 25px;
+            font-weight: 400;
+            transition: color 0.3s;
+            display: inline-block;
+            font-family: "Delius Swash Caps", cursive;
+            animation: fadeInDown 0.5s ease-in-out;
+            backdrop-filter: blur(10px);
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hamburger Button Styles (Hidden by default) */
+        .menu-toggle {
+
+            display: none;
+            /* Hide on desktop */
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: white;
+            padding: 5px;
+        }
+
+        /* Mobile Dropdown Menu Styles (Hidden by default) */
+        .nav-links {
+            display: flex;
+            /* Default for desktop */
+        }
+
+        /* Class added by JS to show the menu */
+        .nav-links.active {
+            display: block;
+        }
+
+
+        /* ================================================
+        3. HERO SECTION 
+        ================================================ */
+        #hero {
+            background-color: rgb(5, 209, 148);
+            color: rgb(0, 0, 0);
+            text-align: center;
+            padding: 100px 20px;
+            font-family: "Delius Swash Caps", cursive;
+            animation: fadeInDown 0.5s ease-in-out;
+        }
+
+        #hero h1 {
+            color: rgb(0, 0, 0);
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            animation: fadeInDown 2s ease-out;
+        }
+
+        #hero p {
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            animation: fadeInDown 2s ease-out;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: rgb(11, 7, 7);
+            color: white;
+            padding: 12px 30px;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .cta-button:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+
+        /* ================================================
+        4. PROJECTS GRID (Responsive)
+        ================================================ */
+        #projects h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: rgb(245, 241, 241);
+            font-family: "Delius Swash Caps", cursive;
+        }
+
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            background-color: rgb(6, 7, 7);
+        }
+
+        .project-card {
+            background-color: rgb(5, 209, 148);
+            border-radius: 20px;
+            box-shadow: 2px 2px 5px rgb(237, 232, 232);
+            padding: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-family: "Delius Swash Caps", cursive;
+            animation: fadeInDown 0.5s ease-in-out;
+            color: black;
+            overflow-y: auto;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card h3 {
+            margin-top: 0;
+            color: black;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: 700;
+            color: rgb(0, 0, 0);
+        }
+
+        .project-link:hover {
+            color: red;
+            text-decoration: underline;
+        }
+
+        .project-cover-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+
+        /* ================================================
+        5. PROFILE (ABOUT) SECTION 
+        ================================================ */
+        #profile {
+            background-color: rgb(5, 209, 148);
+            border-top: 1px solid #ddd;
+            border-radius: 20px;
+            font-family: "Delius Swash Caps", cursive;
+            animation: fadeInDown 0.5s ease-in-out;
+        }
+
+        #profile h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: black;
+            font-size: 30px;
+        }
+
+        .profile-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .profile-image {
+            flex-shrink: 0;
+            text-align: center;
+            border: black;
+        }
+
+        .profile-image img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 2px 2px 4px rgb(116, 69, 69);
+            transition: transform 0.4s;
+        }
+
+        .profile-image img:hover {
+            transform: rotate(8deg) scale(1.1);
+        }
+
+        .skills-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+
+        }
+
+        .skills-list li {
+            background-color: black;
+            color: rgb(246, 239, 239);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 300;
+            transition: background-color 0.2s;
+            font-family: "Delius Swash Caps", cursive;
+            animation: fadeInDown 0.5s ease-in-out;
+        }
+
+        .skills-list li:hover {
+            background-color: #04ffd9;
+            color: black;
+            font-family: "Delius Swash Caps", cursive;
+            animation: fadeInDown 0.5s ease-in-out;
+        }
+
+        .profile-bio {
+            font-family: "Delius Swash Caps", cursive;
+            animation: fadeInDown 0.5s ease-in-out;
+            color: rgb(0, 0, 0);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* ================================================
+        6. CONTACT SECTION & FOOTER
+        ================================================ */
+        #contact {
+            text-align: center;
+            padding-bottom: 80px;
+            color: white;
+            font-family: "Delius Swash Caps", cursive;
+            animation: fadeInDown 0.5s ease-in-out;
+        }
+
+        .contact-cta-button {
+            background-color: rgb(5, 209, 148);
+            color: rgb(9, 5, 5);
+            padding: 15px 35px;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            margin-top: 20px;
+            display: inline-block;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        .contact-cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        footer {
+            background-color: rgb(44, 41, 41);
+            color: #eee;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+            font-family: "Delius Swash Caps", cursive;
+            animation: fadeInDown 0.5s ease-in-out;
+        }
+
+        .cv {
+            margin-top: 25px;
+            color: white;
+            background-color: black;
+            padding: 10px;
+            border-radius: 10px;
+            width: fit-content;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .cv:hover {
+            background-color: rgb(15, 20, 18);
+            color: black;
+            transform: scale(1.1);
+        }
+
+        /* ================================================
+        7. MEDIA QUERIES (Mobile View Dropdown)
+        ================================================ */
+
+        @media (max-width: 768px) {
+
+            /* Show Hamburger Button and Hide Desktop Links */
+            .menu-toggle {
+                display: block;
+                /* Show the hamburger icon */
+            }
+
+            .nav-links {
+                display: none;
+                /* Hide the regular nav links */
+                flex-direction: column;
+                position: absolute;
+                top: 55px;
+                /* Adjust based on header height */
+                left: 0;
+                width: 100%;
+                background-color: rgb(15, 12, 12);
+                box-shadow: var(--box-shadow);
+                padding: 10px 0;
+                text-align: center;
+                color: white
+            }
+
+            .nav-links a {
+                margin: 10px 0;
+                padding: 8px 0;
+                border-bottom: 1px solid #eee;
+                width: 100%;
+                box-sizing: border-box;
+                color: white;
+                /* Ensure text is dark on white background */
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
+            /* Header and Content Adjustments */
+            header {
+                flex-wrap: nowrap;
+                /* Prevent header wrap */
+            }
+
+            .profile-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-image img {
+                margin-bottom: 20px;
+            }
+
+            .skills-list {
+                justify-content: center;
+            }
+
+            #hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* ================================================
+        8. KEYFRAMES FOR ANIMATIONS 
+        ================================================ */
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Myo Myat Oo (miio)</h1>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#projects">Projects</a>
+            <a href="#profile">Profile</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <h1>I Turn Ideas Into Interactive Experiences.</h1>
+        <p>A passionate junior fullstack developer specializing in web-development.</p>
+        <a href="#projects" class="cta-button">View My Work &darr;</a>
+    </section>
+
+    <section id="projects" class="container">
+        <h2>Featured Projects</h2>
+
+        <div class="project-grid">
+
+            <div class="project-card">
+                <img src="./project-saas-cover.jpg" alt="SaaS Platform Redesign Cover" class="project-cover-image">
+
+                <h3>SaaS Platform Redesign (Case Study)</h3>
+                <p><strong>Focus:</strong> UI/UX Design, React Frontend</p>
+                <p>This is hijfdf</p>
+                <p>Modernized the main user dashboard, resulting in a **30% increase** in feature adoption rate.</p>
+                <a href="#" class="project-link" target="_blank">View Case Study &rarr;</a>
+            </div>
+
+            <div class="project-card">
+                <img src="./project-ecommerce-cover.jpg" alt="Local Business E-commerce Build Cover"
+                    class="project-cover-image">
+
+                <h3>Local Business E-commerce Build</h3>
+                <p><strong>Focus:</strong> HTML, CSS Grid, JavaScript, SEO Optimization</p>
+                <p>Built a responsive storefront from scratch, improving Google PageSpeed score to 95/100.</p>
+                <a href="#" class="project-link" target="_blank">View Live Site &rarr;</a>
+            </div>
+
+            <div class="project-card">
+                <img src="./photo_2025-10-16_11-28-08.jpg" alt="Data Pipeline Automation Script Cover"
+                    class="project-cover-image">
+
+                <h3>Data Pipeline Automation Script</h3>
+                <p><strong>Focus:</strong> Python (Pandas), AWS Lambda</p>
+                <p>Script to automate daily data transfers, saving the client approximately 10 hours of manual work per
+                    week.</p>
+                <a href="#" class="project-link" target="_blank">View on GitHub &rarr;</a>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="profile" class="container">
+        <h2>A Little About Me</h2>
+
+        <div class="profile-content">
+            <div class="profile-image">
+                <img src="./photo_2025-10-16_11-28-08.jpg" alt="myomyatoo">
+            </div>
+            <div>
+                <div class="profile-bio">
+                    <p>Hello! I'm Myo Myat Oo, a passionate junior fullstack developer in Pyin Oo Lwin. My work focuses
+                        on the intersection of clean design and efficient performance, ensuring a seamless experience
+                        for
+                        every user.</p>
+
+                    <p>For the past 3 years, I've helped clients ranging from startups to large corporations
+                        achieve their digital goals by adhering to best practices and prioritizing accessibility.</p>
+                </div>
+
+                <h3 style="color: black;text-decoration: underline;">Key Skills</h3>
+                <ul class="skills-list">
+                    <li>HTML5</li>
+                    <li>CSS3 (Flexbox/Grid)</li>
+                    <li>JavaScript (ES6+)</li>
+                    <li>React/Vue</li>
+                    <li>Figma/Sketch</li>
+                    <li>Git/GitHub</li>
+                    <li>php/laravel</li>
+                    <li>Node/express</li>
+                    <li>MySQL</li>
+                    <li>Java</li>
+                    <li>Leadership Skills</li>
+                    <li>Problem Solving</li>
+                    <li>Communication Skills</li>
+                    <li>Time Management</li>
+                    <li>Graphic Design</li>
+                    <li>3D Modeling</li>
+                    <li>Socail Skills</li>
+                    <li>Marketing</li>
+                </ul>
+
+                <p class="cv">
+                    <a href="./myomyatoo-resume.pdf" target="_blank">Download Resume (PDF)</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="container">
+        <h2>Ready to Collaborate?</h2>
+        <p>I am currently open to new opportunities, whether it's a short-term freelance project or a full-time role.
+            Send me a message, and let's discuss your vision!</p>
+
+        <a href="mailto:myomyatoo265@gmail.com" class="contact-cta-button">
+            Send Me An Email
+        </a>
+
+        <div class="social-links" style="margin-top: 30px;">
+            <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a> |
+            <a href="https://github.com/yourusername" target="_blank">GitHub</a> |
+            <a href="#" target="_blank">Telegram</a>
+             
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 miio. All rights reserved. Built with passion and code.</p>
+    </footer>
+
+    <script>
+        // 1. Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Close the menu after clicking a link (mobile only)
+                const navLinks = document.getElementById('navLinks');
+                if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // 2. Hamburger Menu Toggle Functionality
+        document.getElementById('menuToggle').addEventListener('click', function () {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+
+            // Optional: Change icon from bars to X
+            const icon = this.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    </script>
+</body>
+
+</html>
